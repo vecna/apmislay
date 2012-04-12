@@ -1,0 +1,351 @@
+
+
+    vecna@s0ftpj communication subliminal telepatic channel:
+
+                 happy birthday NAIF! 31/8/2004
+
+
+
+                            _,,aaaaa,,_
+                          _,dP"''    `""""Ya,_
+                       ,aP"'                `"Yb,_
+                     ,8"'                       `"8a,
+                   ,8"                             `"8,_
+                 ,8"                                  "Yb,
+               ,8"                                      `8,
+              dP'                                        8I
+            ,8"                           bg,_          ,P'
+           ,8'                              "Y8"Ya,,,,ad"
+          ,d"                            a,_ I8   `"""'
+         ,8'                              ""888
+         dP     __                           `Yb,
+        dP'  _,d8P::::Y8b,                     `Ya
+   ,adba8',d88P::;;::;;;:"b:::Ya,_               Ya
+  dP":::"Y88P:;P"""YP"""Yb;::::::"Ya,             "Y,
+  8:::::::Yb;d" _  "_    dI:::::::::"Yb,__,,gd88ba,db
+  Yb:::::::"8(,8P _d8   d8:::::::::::::Y88P"::::::Y8I
+  `Yb;:::::::""::"":b,,dP::::::::::::::::::;aaa;:::8(
+    `Y8a;:::::::::::::::::::::;;::::::::::8P""Y8)::8I
+      8b"ba::::::::::::::::;adP:::::::::::":::dP::;8'
+      `8b;::::::::::::;aad888P::::::::::::::;dP::;8'
+       `8b;::::::::""""88"  d::::::::::b;:::::;;dP'
+         "Yb;::::::::::Y8bad::::::::::;"8Paaa""'
+           `"Y8a;;;:::::::::::::;;aadP""
+               ``""Y88bbbdddd88P""8b,
+                        _,d8"::::::"8b,
+                      ,dP8"::::::;;:::"b,
+                    ,dP"8:::::::Yb;::::"b,
+                  ,8P:dP:::::::::Yb;::::"b,
+               _,dP:;8":::::::::::Yb;::::"b
+     ,aaaaaa,,d8P:::8":::::::::::;dP:::::;8
+  ,ad":;;:::::"::::8"::::::::::;dP::::::;dI
+ dP";adP":::::;:;dP;::::aaaad88"::::::adP:8b,___
+d8:::8;;;aadP"::8'Y8:d8P"::::::::::;dP";d"'`Yb:"b
+8I:::;""":::::;dP I8P"::::::::::;a8"a8P"     "b:P
+Yb::::"8baa8"""'  8;:;d"::::::::d8P"'         8"
+ "YbaaP::8;P      `8;d::;a::;;;;dP           ,8
+    `"Y8P"'         Yb;;d::;aadP"           ,d'
+                     "YP:::"P'             ,d'
+                       "8bdP'    _        ,8'
+                      ,8"`""Yba,d"      ,d"
+                     ,P'     d"8'     ,d"
+                    ,8'     d'8'     ,P'
+                    (b      8 I      8,
+                     Y,     Y,Y,     `b,
+               ____   "8,__ `Y,Y,     `Y""b,
+           ,adP""""b8P""""""""Ybdb,        Y,
+         ,dP"    ,dP'            `""       `8
+        ,8"     ,P'                        ,P
+        8'      8)                        ,8'
+        8,      Yb                      ,aP'
+        `Ya      Yb                  ,ad"'
+          "Ya,___ "Ya             ,ad"'
+            ``""""""`Yba,,,,,,,adP"'
+                       `"""""""'
+
+        -- protect the little smurf inside you [1] --
+
+This library is able to make anonymous connections without performance 
+loss; it may be implemented for file sharing systems or anonymous 
+transfers of large amount of data.
+
+this project is named apmislay, standing for AVOIDING+PRIVACY+MISLAY
+
+usually network anonymity is given by multiple bounces; this causes a 
+big loss of performance. Instead this new network approach may minimize  
+latency, keeping about the same TCP performance; read the acticle 
+that describes it, it's nice.
+
+this software is tested only against Linux. I've used well known 
+libraries, in order to keep compatibility.
+
+
+---- -- --- ------- ----- ------- -------- -- -----------:
+this is the license under which apmislay library is distributed:
+
+            BSD LICENSE: check on the file header.
+
+:)
+
+keep your privacy.
+
+
+how does apmislay library work ?
+
+usually the anonymity systems use some mix net or derivations from the 
+p2p technology, very effective from the security point of view, but 
+in practice they have very low performances.
+mute, gnunet, and others[6] are an example. freenet is on a different 
+level.
+In file-sharing networks, performances are the key value, so we need a 
+different solution, and the proposal of this project is to reconsider... 
+the Good Old IP SPOOFING!
+
+A normal TCP session works so:
+
+sender ---> it sends packets with his source address, destinated
+            to the receiver -----------------------------> receiver
+
+receiver -> it sends the response with his address to the other 
+            peer -----------------------------------------> sender
+
+in fact, this is:
+
+22:57:02.695355 IP 213.92.8.4.6667 > 192.168.1.69.39884:
+. ack 21 win 5792 <nop,nop,timestamp 1682964088 1366616517>
+
+22:57:02.710024 IP 213.92.8.4.6667 > 192.168.1.69.39884: 
+P 1:50(49) ack 21 win 5792 <nop,nop,timestamp 1682964102 1366616517>
+
+22:57:02.710056 IP 192.168.1.69.39884 > 213.92.8.4.6667: 
+. ack 50 win 33600 <nop,nop,timestamp 1366616583 1682964102>
+
+22:57:05.646010 IP 213.92.8.4.6667 > 192.168.1.69.39884: 
+P 50:195(145) ack 21 win 5792 <nop,nop,timestamp 1682967049 1366616583>
+
+in a bidirectional connection, if the remote server changes his ip 
+from 213.92.8.4 to 213.92.8.3, I will receive his spoofed packets, but I 
+will send the answer to the .3, who has never sent me any packet. So, 
+those packets will be ignored, and the connection will finish for time 
+out.
+
+Imagine there's no heaven It's easy if you try
+oops :P
+Imagine to use a protocol that changes his IP address with one other 
+near (changing the last 3 bits, for example). Imagine a system that, 
+receiving these packets, responds to all the possible IPs in the range 
+covered by the last 3 bits... this "official anonymity" system that we 
+obtain, allows the receiver to respond, trying all the 8 possible IPs 
+(the 8 IPs we cover with 3 bits), sendind the packets also to the right 
+IP. It will receive the correct response, and so close the ring.
+
+
+Imagine to build a connection where both hosts change their 'source' IP 
+address using a very similar address (for example modifying only the last 
+3 bits). Imagina a system that, receiving those spoofed packets, respond 
+to all possible IP covered by the last 3 bits (a range of 8 IPs).
+This "official anonimity" system let answer come back to the correct host 
+while not disclosing any information about the effective peer IP to a 
+watching third party.
+
+Let's select, for sake of simplicity, a RECEIVING peer and a SENDING peer
+for a single data transfer. Here is an outline of the system:
+
+SENDER: 213.92.8.3
+RECEIVER: 192.168.1.69
+
+Packets transmitted by the sender, containing real interesting data:
+
+       213.92.8.[1, 2, 3, 4, 5, 6, 7 OR 8, only one selected each time]
+                        |
+                        | DATA 
+                        |
+                       \ /
+		   192.168.1.69
+
+Answers (ACKs) from the RECEIVER
+
+
+                   192.168.1.69
+                          |
+                          | ACK
+                          |
+                         \ /
+          -------------------------------------
+          |    |    |    |     |    |    |    | 
+213.92.8  .1   .2   .3   .4   .5   .6   .7    .8 (all of them)
+
+As a RECEIVING peer, the download performance is not heavily affected 
+by this system since SENDER's outgoing stream is not replicated.
+Instead, the RECEIVER must be able to send 8 time each ACK packet, but 
+they are smaller and can lots of incoming packet may be accumulated before 
+sending a single ACK.
+Those hosts liying on the same RECEIVER's IP 3-bit range will receive 
+'strange' meaningless packets of an unmatched connection and will drop 
+them for sure.
+
+
+                   192.168.1.69 (Ignoring RST error)
+		         / \
+			  |
+                          | RST
+			  |
+			  |
+          -------------------------------------
+          |    |    |    |     |    |    |    | 
+213.92.8  .1   .2   .3   .4   .5   .6   .7    .8 (all of them)
+
+
+for this reason, also the sender answer with the RST packet with a 
+raw sock process in background, the remote stack ignore ALL reset 
+packets and the real sender is hide from a correlation attack
+(the uniq box don't sending the RST packets is the mantainer of 
+connection, so I emulate resetting also).
+
+So the sender can remain anonymous, and the receiver has good download 
+performances :)
+
+The following implementation is not thought to be used actively, it's a 
+hack around the normal kernel way of working; it uses iptables, the SNAT 
+target to make transparent spoofing, and the libpcap to read and 
+replicate outgoing traffic.
+
+How? Simply with a little bruteforce :) the big amount of data is sent 
+from the spoofer (sender) and is read by the receiver. Over TCP 
+connections, the receiver simply needs to send ACKs to continue the 
+transfer. The ACK packet is very tiny, and some implementations support 
+also cumulative ack'ing. So it's easy to replicate this traffic for all 
+the possible IPs (the remaining seven IPs in the example above:)
+
+This approach solves the problem of sender who wants to keep anonymity, 
+and the problem of the receiver that wants good performances for his 
+downloads.
+
+It's implemented not to be an active enviroment but as a hack around 
+the normal kernel behaviour. For this reason I'm using iptables with 
+SNAT target for transparent spoofing, and pcap for passive reading, 
+needed for packet replication.
+
+This is a very simple library, in 8k bytes of C code (the other 4 are
+comments :)
+I belive that a proof of concept needs a lightweight and simple code.
+This is my second implementation of the same lib, because it seems to be 
+better :)
+
+Using iptables and libpcap makes the library less os-dependent, so that 
+it can be ported under other operating system. This library needs to 
+be coded better to become usable. I'm thinking wheter to continue its 
+development or not. I'm waiting for feedback to decide.
+
+This is release 0.0.1, the three only APIs that this library support 
+are:
+
+anonymous_connect:
+	it sets an iptables rule for spoofing transparently outgoing 
+	traffic generated by applications. Then it estabilishes a 
+	connection, as made by the usual system call. fork a child 
+	able to read ACKs and sent RST packet (ignored from the remote
+	peer) for seem a simple host.
+
+anonymous_bind:
+	it forks, then the child reads from the datalink layer the 
+	packets belonging to the binded service. Once made this, it 
+	replicates all the packets for the other IPs. set an iptables
+	rule for ignore RST packets sent in the answer from him the ACKs
+	storm. anonymous_bind must be used only a port each time, for
+	this reason contains listen (with backlog 1) and accept, returning
+	client connected file descriptor.
+
+anonymous_close:
+	clean the added iptables rule.
+
+apmislay requires root permissions to run. it is tested only under Linux 
+2.6, but it can be ported with few modifications to any other OS that 
+has a firewall and supports pcap and SNAT.
+
+
+This project may arise some stange thought:
+
+1) why spoofing ip address around my real address?
+   - because the ISP uses some spoofing protection for outgoing packets,
+     this may permit more freedom of movement while spoofing.
+2) the IPs around the sender address receive my answer
+   - yes, but they are only some ACKs...
+3) I could be detected because this is not safe anonymity.
+   - yes, is not -safe-, but if a lot of clients start using a
+     framework like this generated fake packets may be used to
+     hide each other peer connection.
+     and protected from stupid controls about file sharing.
+4) why did you make this weird thing ?
+   - I'm bored and I'm looking for a part-time job, maybe I've found
+     a solution with http://www.kapuziner.it ?
+
+
+  Thanks for download this project: vecna <vecna@s0ftpj.org>,
+  I wish you are the mantainer of some big filesharing program and 
+  think at the possibility of implementing some anonymity stuff on your
+  software. I know this library is not complete, but I could work
+  better if someone is interested, and add this feature on some 
+  filesharing software :)
+
+
+
+5) know bugs:
+   - unsupported cleanup, this is 0.0.1 release :) (and probably the 
+   last)
+
+THANKS:
+	denever! he have find the weakness of the protocol, suggesting
+	me about correlation attack about presence/absence of RST for 
+	unrequested session.
+	insomniac: the translator for the most of this README
+	Nail: translation and ASCII pic example !
+
+REF:
+
+[1] thanks for the ASCII art archive:
+    http://www.geocities.com/SouthBeach/Marina/4942/ascii.htm
+
+[2] this link has no reference on the text above, but is the most
+    useful italian project about eletronic privacy:
+    http://e-privacy.firenze.linux.it
+
+[3] this is the main knowledge:
+    The Free Haven project http://freehaven.net
+
+[4] this is taken for granted, but consult always your untrusted oracle:
+    http://www.google.com
+
+[5] this don't exist, is like your DNA, you don't know nothing about but 
+    ... yes you understand.
+    http://www.s0ftpj.org
+
+[6] this is the unique real reference from my text, Mute net home page,
+    http://mute-net.sf.net . other interesting projects are:
+    http://www.gnu.org/software/gnunet/ (GNUnet) and then follow the 
+    link inside :)
+
+[7] thanks to denever@autistici.org & insomniac@slackit.org for 
+    translation and some suggestions
+
+
+AAA example: if you are on your LAN and you want to test server-example
+and client-example, remember to emulate the possibile IPs with virtual 
+interfaces, like eth0:1. This is needed because, on a LAN, before 
+sending a packet for an unexistent ip, an arp query is made, and if no 
+reply is received, sender will stop sending packets.
+
+At the actual state, apmislay header must include the client's IP 
+address. On a later (and better) implementation, it will 
+automatically retrieve it for you :)
+
+
+Here are the md5sum to check the integrity of C files:
+
+18ed860e370f10d140aec8d00297afab  apmislay-lib.c
+74861bb42d3c41e70d0a4312c1f1aa6b  client-example.c
+05d3224fcffe8e6a8f8ee45401e7aeff  server-example.c
+b3c55e2fe04a7e66112eabd86bfc12de  apmislay.h
+
+this file is signed with key 0xC2752D4B under pgp.mit.edu,
+vecna@s0ftpj.org Tue Sep 14 06:36:39 CEST 2004
